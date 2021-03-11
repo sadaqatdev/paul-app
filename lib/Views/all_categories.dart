@@ -69,6 +69,7 @@ class AllCatorgies extends StatelessWidget {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => ItemPage(
                                         categoryId: categoryList[index].id,
+                                        name: categoryList[index].name,
                                       )));
                             },
                             child: Stack(

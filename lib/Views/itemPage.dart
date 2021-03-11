@@ -1,12 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:paul_app/Views/viewItems.dart';
 import 'package:paul_app/controllers/product_controller.dart';
+import 'package:paul_app/widgets/colors.dart';
 
 import 'package:paul_app/widgets/progress_bar.dart';
 
 class ItemPage extends StatefulWidget {
   final int categoryId;
-  ItemPage({this.categoryId});
+  final String name;
+  ItemPage({this.categoryId, this.name});
   @override
   _ItemPageState createState() => new _ItemPageState();
 }
@@ -18,7 +23,37 @@ class _ItemPageState extends State<ItemPage> {
     SortBy(value: 'price', text: 'Price: High to Low', sortOrder: 'desc'),
     SortBy(value: 'price', text: 'Price: Low to High', sortOrder: 'asc'),
   ];
-  final contr = Get.put(ProductController());
+
+  ProductController contr;
+  Timer debounce;
+  TextEditingController searchQuery = TextEditingController();
+  onSearchChange() {
+    print('-----------------');
+    if (debounce?.isActive ?? false) {
+      debounce.cancel();
+    } else {
+      debounce = Timer(Duration(milliseconds: 500), () {
+        ProductController.to.resetStreams();
+        ProductController.to.setLoadingState(LoadMoreStatus.INITIAL);
+        ProductController.to.fetchProducts(ProductController.to.page,
+            strSearch: searchQuery.text);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    contr = Get.put(ProductController(categoryId: widget.categoryId));
+    searchQuery.addListener(onSearchChange);
+    super.initState();
+  }
+
+  @override
+  dispose() {
+    searchQuery.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -28,7 +63,7 @@ class _ItemPageState extends State<ItemPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('Wedding'),
+          title: Text(widget.name),
         ),
         body: Container(
           width: Get.width,
@@ -49,11 +84,21 @@ class _ItemPageState extends State<ItemPage> {
                             width: 8,
                           ),
                           Expanded(
-                            flex: 5,
-                            child: TextFormField(
-                              controller: ProductController.to.searchQuery,
-                              decoration: InputDecoration(
-                                hintText: 'Search',
+                            flex: 6,
+                            child: Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: grayColor,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: TextField(
+                                controller: searchQuery,
+                                decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(left: 6),
+                                    hintText: "Search...",
+                                    border: InputBorder.none),
                               ),
                             ),
                           ),
@@ -108,7 +153,16 @@ class _ItemPageState extends State<ItemPage> {
                                     children: List.generate(
                                         controller.allProduct.length, (index) {
                                       return GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return ViewItems(
+                                              product:
+                                                  controller.allProduct[index],
+                                            );
+                                          }));
+                                        },
                                         child: Container(
                                           // height: MediaQuery.of(context).size.height /2,
                                           width: MediaQuery.of(context)
@@ -206,8 +260,8 @@ class _ItemPageState extends State<ItemPage> {
                                                       const EdgeInsets.only(
                                                           left: 8.0, top: 0),
                                                   child: Text(
-                                                    controller
-                                                        .allProduct[index].sku,
+                                                    controller.allProduct[index]
+                                                        .categories[0].name,
                                                     style: TextStyle(
                                                         color: Colors.black,
                                                         fontSize: height / 56,

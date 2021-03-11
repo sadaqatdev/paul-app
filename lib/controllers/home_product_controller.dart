@@ -17,14 +17,14 @@ class SortBy {
 
 enum LoadMoreStatus { INITIAL, LOADING, STABLE }
 
-class ProductController extends GetxController {
+class HomeProductController extends GetxController {
   int categoryId;
-  ProductController({this.categoryId});
-  static ProductController get to => Get.find<ProductController>();
+  HomeProductController({this.categoryId});
+  static HomeProductController get to => Get.find<HomeProductController>();
 
   ApiServices _services;
 
-  ScrollController scrcontroller = ScrollController();
+  ScrollController pscrcontroller = ScrollController();
 
   List<Product> productList;
 
@@ -44,9 +44,9 @@ class ProductController extends GetxController {
 
     fetchProducts(page);
 
-    scrcontroller.addListener(() {
-      if (scrcontroller.position.pixels ==
-          scrcontroller.position.maxScrollExtent) {
+    pscrcontroller.addListener(() {
+      if (pscrcontroller.position.pixels ==
+          pscrcontroller.position.maxScrollExtent) {
         setLoadingState(LoadMoreStatus.LOADING);
         fetchProducts(++page);
       }
@@ -56,7 +56,7 @@ class ProductController extends GetxController {
   }
 
   onClose() {
-    scrcontroller.dispose();
+    pscrcontroller.dispose();
 
     super.onClose();
   }

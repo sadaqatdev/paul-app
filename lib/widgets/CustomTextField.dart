@@ -8,7 +8,6 @@ class CustomTextField extends StatelessWidget {
       this.text,
       this.obscureText,
       this.textInputType,
-      this.textInputAction,
       this.textColor,
       this.iconButton,
       this.validator,
@@ -16,7 +15,7 @@ class CustomTextField extends StatelessWidget {
   final String hinttext, text;
   final bool obscureText;
   final TextInputType textInputType;
-  final TextInputAction textInputAction;
+
   final Color textColor;
   final IconButton iconButton;
   final Function(String) validator;
@@ -37,8 +36,6 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         style: TextStyle(color: blackColor, fontSize: 14),
         validator: validator,
-        textInputAction:
-            textInputAction != null ? textInputAction : TextInputAction.next,
         keyboardType: textInputType,
         obscureText: obscureText == null ? false : obscureText,
         onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),

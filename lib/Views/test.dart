@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:paul_app/Views/purchaseContainer.dart';
 import 'package:paul_app/widgets/colors.dart';
@@ -7,7 +6,6 @@ import 'package:paul_app/widgets/tabBar.dart';
 import 'itemPage.dart';
 import 'itemsContainer.dart';
 import 'mySales.dart';
-
 
 class MyAppss extends StatelessWidget {
   // This widget is the root of your application.
@@ -49,53 +47,68 @@ class _ProfileFirstState extends State<ProfileFirst> {
         direction: Axis.vertical,
         // overflow: Overflow.visible,
         children: <Widget>[
-
           Container(
             decoration: BoxDecoration(
                 color: Colors.black,
                 image: DecorationImage(
                     image: AssetImage("images/shop.jpg"),
-                    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop ),
-                    fit: BoxFit.fill
-                )
-            ),
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.6), BlendMode.dstATop),
+                    fit: BoxFit.fill)),
             // color: Colors.blue[600],
             height: 40 * SizeConfig.heightMultiplier,
             width: SizeConfig._screenWidth,
             child: Padding(
-              padding:  EdgeInsets.only(left: 10.0, right: 10.0, top: 15 * SizeConfig.heightMultiplier),
+              padding: EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                  top: 15 * SizeConfig.heightMultiplier),
               child: Column(
                 children: <Widget>[
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text("Little Fancy", style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 3 * SizeConfig.textMultiplier,
-                          fontWeight: FontWeight.bold
-                      ),),
-                      SizedBox(height: 1 * SizeConfig.heightMultiplier,),
-                      Text("Your story about what you do..", style: TextStyle(
-                        color: Colors.white60,
-                        fontSize: 1.5 * SizeConfig.textMultiplier,
-                      ),)
+                      Text(
+                        "Little Fancy",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 3 * SizeConfig.textMultiplier,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 1 * SizeConfig.heightMultiplier,
+                      ),
+                      Text(
+                        "Your story about what you do..",
+                        style: TextStyle(
+                          color: Colors.white60,
+                          fontSize: 1.5 * SizeConfig.textMultiplier,
+                        ),
+                      )
                     ],
                   ),
-                  SizedBox(height: 4 * SizeConfig.heightMultiplier,),
+                  SizedBox(
+                    height: 4 * SizeConfig.heightMultiplier,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Column(
                         children: <Widget>[
-                          Text("543", style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 3 * SizeConfig.textMultiplier,
-                              fontWeight: FontWeight.bold
-                          ),),
-                          Text("Following", style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 1.9 * SizeConfig.textMultiplier,
-                          ),),
+                          Text(
+                            "543",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 3 * SizeConfig.textMultiplier,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Following",
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 1.9 * SizeConfig.textMultiplier,
+                            ),
+                          ),
                         ],
                       ),
                       Container(
@@ -105,8 +118,8 @@ class _ProfileFirstState extends State<ProfileFirst> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: NetworkImage("https://cdn.pixabay.com/photo/2015/09/02/13/24/girl-919048_960_720.jpg"))
-                        ),
+                                image: NetworkImage(
+                                    "https://cdn.pixabay.com/photo/2015/09/02/13/24/girl-919048_960_720.jpg"))),
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -115,22 +128,20 @@ class _ProfileFirstState extends State<ProfileFirst> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("Follow shop", style: TextStyle(
-                              color: Colors.white60,
-                              fontSize: 1.8 * SizeConfig.textMultiplier
-                          ),),
+                          child: Text(
+                            "Follow shop",
+                            style: TextStyle(
+                                color: Colors.white60,
+                                fontSize: 1.8 * SizeConfig.textMultiplier),
+                          ),
                         ),
                       ),
                     ],
                   ),
-
                 ],
               ),
             ),
           ),
-
-
-
           Container(
             height: 63 * SizeConfig.heightMultiplier,
             width: MediaQuery.of(context).size.width,
@@ -139,28 +150,34 @@ class _ProfileFirstState extends State<ProfileFirst> {
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(30.0),
                   topLeft: Radius.circular(30.0),
-                )
-            ),
+                )),
             child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top:8),
+                    padding: const EdgeInsets.only(top: 8),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.star,color: basicColorcustomer,size: 18,),
-                        Text("4.9", style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 2.2 * SizeConfig.textMultiplier
-                        ),),
+                        Icon(
+                          Icons.star,
+                          color: basicColorcustomer,
+                          size: 18,
+                        ),
+                        Text(
+                          "4.9",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 2.2 * SizeConfig.textMultiplier),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 3 * SizeConfig.heightMultiplier,),
-
+                  SizedBox(
+                    height: 3 * SizeConfig.heightMultiplier,
+                  ),
                   Container(
                     // color: Colors.redAccent,
                     // padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 0.0),
@@ -179,18 +196,9 @@ class _ProfileFirstState extends State<ProfileFirst> {
                             child: TabBarView(
                               children: <Widget>[
                                 GestureDetector(
-                                    onTap: ()
-                                    {
-
-                                    },
-                                    child: itemConatiner()),
-
-                                GestureDetector( onTap: ()
-                                {
-
-                                },
-                                    child: mySalesContainer()),
-
+                                    onTap: () {}, child: itemConatiner()),
+                                GestureDetector(
+                                    onTap: () {}, child: MySalesContainer()),
                               ],
                             ),
                           )
@@ -202,13 +210,10 @@ class _ProfileFirstState extends State<ProfileFirst> {
               ),
             ),
           ),
-
         ],
       ),
-
     );
   }
-
 }
 
 class SizeConfig {

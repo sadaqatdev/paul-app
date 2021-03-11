@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:paul_app/models/categories.dart';
+import 'package:paul_app/models/categories.dart' as cat;
 import 'package:paul_app/models/customer.dart';
 import 'package:paul_app/models/login_model.dart';
 import 'package:paul_app/models/product.dart';
@@ -58,8 +58,8 @@ class ApiServices {
     return model;
   }
 
-  Future<List<Category>> getCategories() async {
-    List<Category> data = [];
+  Future<List<cat.Category>> getCategories() async {
+    List<cat.Category> data = [];
 
     String url = Config.url +
         Config.categoryUrl +
@@ -72,7 +72,9 @@ class ApiServices {
       print('-------------------responce');
       print(responce.data);
       if (responce.statusCode == 200) {
-        data = (responce.data as List).map((e) => Category.fromMap(e)).toList();
+        data = (responce.data as List)
+            .map((e) => cat.Category.fromMap(e))
+            .toList();
         print('-------------------data-----');
         print(data.toString());
       }
@@ -128,7 +130,7 @@ class ApiServices {
       print('-------------------responce');
       print(responce.data);
       if (responce.statusCode == 200) {
-        data = (responce.data as List).map((e) => Product.fromMap(e)).toList();
+        data = (responce.data as List).map((e) => Product.fromJson(e)).toList();
         print('-------------------responce-----');
         print(data.length);
       }

@@ -39,6 +39,10 @@ dependencies:
   dio: ^3.0.10
   get: ^3.24.0
   get_storage: ^1.4.0
+  # flutter_native_html_view: ^1.0.1
+  flutter_html: ^0.11.1
+  flutter_inappwebview: ^4.0.0+4
+  stripe_payment: ^1.0.10
 
 dev_dependencies:
   flutter_test:

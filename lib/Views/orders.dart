@@ -80,7 +80,7 @@ class _OrderPageState extends State<OrderPage> {
                               child: TabBarView(
                                 children: <Widget>[
                                   purchaseContainer(),
-                                  mySalesContainer(),
+                                  MySalesContainer(),
                                 ],
                               ),
                             ),

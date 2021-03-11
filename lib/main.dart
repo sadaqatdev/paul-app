@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:paul_app/Views/paymentScreen.dart';
-import 'Views/allCategories.dart';
+import 'Views/all_categories.dart';
 import 'Views/bottomNavigation.dart';
 import 'Views/forgotPassword.dart';
 import 'Views/homePage.dart';
