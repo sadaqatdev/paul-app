@@ -11,4 +11,5 @@ class Config {
   static String todayOfferTagId = '24';
   static String topSellingProductTagId = '25';
   static String wcfm = '$baseUrl/wcfmmp/v1/products/';
+  static String orders = 'orders';
 }

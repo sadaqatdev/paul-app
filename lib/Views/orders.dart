@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paul_app/Views/purchaseContainer.dart';
-import 'package:paul_app/Views/purchaseDetail.dart';
-import 'package:paul_app/Views/salesDetail.dart';
-import 'package:paul_app/widgets/CustomButton.dart';
-import 'package:paul_app/widgets/CustomTextField.dart';
-import 'package:paul_app/widgets/Lists.dart';
 import 'package:paul_app/widgets/appBar.dart';
-import 'package:paul_app/widgets/colors.dart';
-import 'package:paul_app/widgets/search_bar.dart';
 import 'package:paul_app/widgets/styles.dart';
 import 'package:paul_app/widgets/tabBar.dart';
 

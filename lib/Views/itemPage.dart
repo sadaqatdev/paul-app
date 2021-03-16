@@ -146,7 +146,7 @@ class _ItemPageState extends State<ItemPage> {
                                   child: GridView.count(
                                     crossAxisCount: 2,
                                     mainAxisSpacing: 10,
-                                    childAspectRatio: (2 / 3),
+                                    childAspectRatio: 0.6,
                                     controller: controller.scrcontroller,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,

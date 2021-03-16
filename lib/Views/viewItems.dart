@@ -375,6 +375,10 @@ class _ProfileFirstState extends State<ViewItems> {
                                 image: widget.product.images[0].src,
                               );
                               CartController.to.addToCart(product);
+                              Get.showSnackbar(GetBar(
+                                message: 'successful Add to Cart',
+                                duration: Duration(seconds: 2),
+                              ));
                             },
                             child: Text(
                               'Add to Basket',

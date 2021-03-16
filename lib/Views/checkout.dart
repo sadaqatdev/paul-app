@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:paul_app/Views/in_app_webview/paystack.dart';
-import 'package:paul_app/Views/paymentScreen.dart';
 import 'package:paul_app/controllers/cart_controller.dart';
 import 'package:paul_app/widgets/CustomButton.dart';
 import 'package:paul_app/widgets/CustomTextField.dart';
-import 'package:paul_app/widgets/Lists.dart';
 
 import 'package:paul_app/widgets/colors.dart';
 import 'package:paul_app/widgets/styles.dart';
@@ -117,7 +114,67 @@ class _CheckoutState extends State<Checkout> {
                                     const SizedBox(
                                       height: 6,
                                     ),
-
+                                    CustomTextField(
+                                      hinttext: "Address 1",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.addressOne,
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Enter Value';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    CustomTextField(
+                                      hinttext: "Address 2",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.addressTwo,
+                                    ),
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    CustomTextField(
+                                      hinttext: "State",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.state,
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Enter Value';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    CustomTextField(
+                                      hinttext: "Post Code",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.poastcode,
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Enter Value';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
                                     Text("Country",
                                         style: TextStyle(
                                             color: Colors.black,
@@ -246,6 +303,68 @@ class _CheckoutState extends State<Checkout> {
                                     const SizedBox(
                                       height: 6,
                                     ),
+                                    CustomTextField(
+                                      hinttext: "Address 1",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.saddressOne,
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Enter Value';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    CustomTextField(
+                                      hinttext: "Address 2",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.sAddressTwo,
+                                    ),
+
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    CustomTextField(
+                                      hinttext: "State",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.sstate,
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Enter Value';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
+                                    CustomTextField(
+                                      hinttext: "Post Code",
+                                      obscureText: false,
+                                      textInputType:
+                                          TextInputType.streetAddress,
+                                      controller: controller.spostcode,
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Enter Value';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      height: 6,
+                                    ),
                                     Text("Country",
                                         style: TextStyle(
                                             color: Colors.black,
@@ -288,7 +407,7 @@ class _CheckoutState extends State<Checkout> {
                                       hinttext: "Country",
                                       obscureText: false,
                                       textInputType: TextInputType.emailAddress,
-                                      controller: controller.county,
+                                      controller: controller.scounty,
                                       validator: (value) {
                                         if (value.isEmpty) {
                                           return 'Enter Value';
@@ -298,39 +417,7 @@ class _CheckoutState extends State<Checkout> {
                                       },
                                     ),
                                     const SizedBox(
-                                      height: 6,
-                                    ),
-                                    CustomTextField(
-                                      hinttext: "Contact Number",
-                                      obscureText: false,
-                                      textInputType: TextInputType.number,
-                                      controller: controller.sphone,
-                                      validator: (value) {
-                                        if (value.isEmpty) {
-                                          return 'Enter Value';
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      height: 6,
-                                    ),
-                                    CustomTextField(
-                                      hinttext: "E-mail Address",
-                                      obscureText: false,
-                                      textInputType: TextInputType.emailAddress,
-                                      controller: controller.semail,
-                                      validator: (value) {
-                                        if (value.isEmpty) {
-                                          return 'Enter Value';
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      height: 6,
+                                      height: 12,
                                     ),
                                   ],
                                 ),
@@ -363,17 +450,14 @@ class _CheckoutState extends State<Checkout> {
                                     style: CustomTextStyle.buttontitle(context),
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => PayStack()));
-                                    // if (formKey.currentState.validate()) {
-
-                                    // } else {
-                                    //   Get.showSnackbar(GetBar(
-                                    //     message: 'Please Fill All the Fields',
-                                    //     duration: Duration(seconds: 3),
-                                    //   ));
-                                    // }
+                                    if (formKey.currentState.validate()) {
+                                      controller.gotToConfirm();
+                                    } else {
+                                      Get.showSnackbar(GetBar(
+                                        message: 'Please Fill All the Fields',
+                                        duration: Duration(seconds: 3),
+                                      ));
+                                    }
                                   },
                                   color: basicColorShopper,
                                   focusColor: buttonColor2,

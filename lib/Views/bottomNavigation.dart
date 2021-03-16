@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paul_app/Views/sell_page.dart';
 import 'package:paul_app/Views/vendorAccount.dart';
 import 'package:paul_app/services/api_services.dart';
 import 'package:paul_app/widgets/colors.dart';
@@ -72,7 +73,7 @@ class _BottomNavigationState extends State<BottomNavigation>
       backgroundColor: basicColorcustomer,
       onPressed: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (Context) => AddProduct()));
+            .push(MaterialPageRoute(builder: (context) => SellPage()));
       },
       tooltip: 'Increment',
       child: Icon(Icons.camera_alt),

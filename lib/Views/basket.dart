@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:paul_app/Views/salesDetail.dart';
 import 'package:paul_app/controllers/cart_controller.dart';
+import 'package:paul_app/controllers/payment_controller.dart';
 import 'package:paul_app/widgets/CustomButton.dart';
 import 'package:paul_app/widgets/appBar.dart';
 import 'package:paul_app/widgets/colors.dart';
@@ -24,7 +25,7 @@ class _BasketState extends State<Basket> {
   String itemprice = "\$85";
   String postagePrice = "\$90";
   String total = "\$175";
-
+  PaymentController controller = PaymentController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -38,7 +39,6 @@ class _BasketState extends State<Basket> {
         child: GetBuilder<CartController>(
             init: CartController(),
             builder: (snapshot) {
-              var total = snapshot.totalPrice;
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -177,8 +177,14 @@ class _BasketState extends State<Basket> {
                                   style: CustomTextStyle.buttontitle(context),
                                 ),
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => Checkout()));
+                                  if (snapshot.cartList.length > 0) {
+                                    snapshot.gotoAddress();
+                                  } else {
+                                    Get.showSnackbar(GetBar(
+                                      message: 'No items in cart',
+                                      duration: Duration(seconds: 3),
+                                    ));
+                                  }
                                 },
                                 colors: basicColorcustomer,
                               ),
