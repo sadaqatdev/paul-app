@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,7 +10,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
-    GetStorage.init();
+
     Timer(Duration(seconds: 2),
         () => Navigator.pushNamed(context, "/walkthrough"));
   }

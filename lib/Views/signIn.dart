@@ -27,6 +27,13 @@ class _LogInState extends State<SignInScreen> {
   }
 
   @override
+  void initState() {
+    _nameController.text = 'Sadaqat@gm.com';
+    _passwordController.text = '1234567';
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _nameController.dispose();
     _passwordController.dispose();

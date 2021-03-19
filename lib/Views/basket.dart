@@ -9,9 +9,6 @@ import 'package:paul_app/widgets/appBar.dart';
 import 'package:paul_app/widgets/colors.dart';
 import 'package:paul_app/widgets/styles.dart';
 
-import 'checkout.dart';
-import 'mySales.dart';
-
 class Basket extends StatefulWidget {
   @override
   _BasketState createState() => _BasketState();

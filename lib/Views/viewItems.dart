@@ -366,19 +366,21 @@ class _ProfileFirstState extends State<ViewItems> {
                         FlatButton(
                             color: Colors.red,
                             onPressed: () {
-                              CartProduct product = CartProduct(
-                                productId: widget.product.id,
-                                quantity: this.qunty,
-                                price: double.parse(widget.product.price),
-                                title: widget.product.name,
-                                type: widget.product.attributes[0].options[0],
-                                image: widget.product.images[0].src,
-                              );
-                              CartController.to.addToCart(product);
-                              Get.showSnackbar(GetBar(
-                                message: 'successful Add to Cart',
-                                duration: Duration(seconds: 2),
-                              ));
+                              if (this.qunty > 0) {
+                                CartProduct product = CartProduct(
+                                  productId: widget.product.id,
+                                  quantity: this.qunty,
+                                  price: double.parse(widget.product.price),
+                                  title: widget.product.name,
+                                  type: widget.product.attributes[0].options[0],
+                                  image: widget.product.images[0].src,
+                                );
+                                CartController.to.addToCart(product);
+                                Get.showSnackbar(GetBar(
+                                  message: 'successful Add to Cart',
+                                  duration: Duration(seconds: 2),
+                                ));
+                              }
                             },
                             child: Text(
                               'Add to Basket',

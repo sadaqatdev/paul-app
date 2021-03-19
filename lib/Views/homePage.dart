@@ -11,6 +11,7 @@ import 'package:paul_app/widgets/progress_bar.dart';
 import 'package:paul_app/widgets/styles.dart';
 
 import 'all_categories.dart';
+import 'itemPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -189,7 +190,15 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ItemPage(
+                                          categoryId:
+                                              controller.categoryList[index].id,
+                                          name: controller
+                                              .categoryList[index].name,
+                                        )));
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 6),
@@ -269,7 +278,16 @@ class _HomePageState extends State<HomePage> {
                                           controller.allProduct.length,
                                           (index) {
                                         return GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return ViewItems(
+                                                product: controller
+                                                    .allProduct[index],
+                                              );
+                                            }));
+                                          },
                                           child: Container(
                                             // height: MediaQuery.of(context).size.height /2,
                                             width: MediaQuery.of(context)

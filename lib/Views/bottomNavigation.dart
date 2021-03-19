@@ -1,14 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:paul_app/Views/sell_page.dart';
 import 'package:paul_app/Views/vendorAccount.dart';
 import 'package:paul_app/services/api_services.dart';
 import 'package:paul_app/widgets/colors.dart';
 import 'package:paul_app/widgets/fab_bottom_app_bar.dart';
 
-import 'AddProduct.dart';
 import 'allMessages.dart';
 import 'homePage.dart';
 import 'orders.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+
+  print("Handling a background message: ${message.messageId}");
+}
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -36,9 +44,25 @@ class _BottomNavigationState extends State<BottomNavigation>
     await services.getCategories();
   }
 
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  FlutterLocalNotificationsPlugin fltNotification;
+
+  @override
+  void initState() {
+    notitficationPermission();
+    initMessaging();
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    super.initState();
+  }
+
+  void getToken() async {
+    print(await messaging.getToken());
+  }
+
   @override
   Widget build(BuildContext context) {
-    getCategory();
+    getToken();
     return Scaffold(
       body: _pageOptions[_selectedTab],
       bottomNavigationBar: FABBottomAppBar(
@@ -78,6 +102,48 @@ class _BottomNavigationState extends State<BottomNavigation>
       tooltip: 'Increment',
       child: Icon(Icons.camera_alt),
       elevation: 2.0,
+    );
+  }
+
+  void initMessaging() {
+    var androiInit = AndroidInitializationSettings('ic_launcher');
+
+    var iosInit = IOSInitializationSettings();
+
+    var initSetting = InitializationSettings(android: androiInit, iOS: iosInit);
+
+    fltNotification = FlutterLocalNotificationsPlugin();
+
+    fltNotification.initialize(initSetting);
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      showNotification();
+      print('--------------------------------');
+    });
+  }
+
+  void showNotification() async {
+    var androidDetails =
+        AndroidNotificationDetails('1', 'channelName', 'channel Description');
+
+    var iosDetails = IOSNotificationDetails();
+
+    var generalNotificationDetails =
+        NotificationDetails(android: androidDetails, iOS: iosDetails);
+
+    await fltNotification.show(0, 'title', 'body', generalNotificationDetails,
+        payload: 'Notification');
+  }
+
+  void notitficationPermission() async {
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
     );
   }
 }

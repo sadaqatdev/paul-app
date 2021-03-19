@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:paul_app/models/customer.dart';
 import 'package:paul_app/services/api_services.dart';
 
 class SignUpController extends GetxController {
   ApiServices _apiServices;
   var isLoading = false.obs;
-  final storage = GetStorage();
+
   @override
   void onInit() {
     _apiServices = ApiServices();
@@ -19,7 +19,7 @@ class SignUpController extends GetxController {
     bool result = await _apiServices.createCustomer(model);
     if (result) {
       showBar('Sucessfully Account Created');
-      storage.write('isLogin', 'yes');
+
       Get.offAllNamed('/naviga');
       isLoading(false);
     } else {

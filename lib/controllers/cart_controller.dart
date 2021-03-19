@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:paul_app/Views/checkout.dart';
 import 'package:paul_app/Views/in_app_webview/stripe_payment.dart';
 import 'package:paul_app/controllers/staticcart.dart';
@@ -13,8 +13,6 @@ class CartController extends GetxController {
   static CartController get to => Get.find<CartController>();
 
   Set<CartProduct> cartList = {};
-
-  final storage = GetStorage();
 
   TextEditingController fNameControler = TextEditingController();
   TextEditingController lNameControler = TextEditingController();
@@ -89,10 +87,6 @@ class CartController extends GetxController {
     // cartList.addAll(tempList);
     print('----------------');
     print(cartList.length);
-
-    storage.remove('cart');
-
-    storage.write('cart', cartList.toList());
 
     update();
   }

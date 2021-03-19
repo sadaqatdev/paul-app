@@ -161,8 +161,7 @@ class _CheckoutState extends State<Checkout> {
                                     CustomTextField(
                                       hinttext: "Post Code",
                                       obscureText: false,
-                                      textInputType:
-                                          TextInputType.streetAddress,
+                                      textInputType: TextInputType.number,
                                       controller: controller.poastcode,
                                       validator: (value) {
                                         if (value.isEmpty) {
@@ -351,8 +350,7 @@ class _CheckoutState extends State<Checkout> {
                                     CustomTextField(
                                       hinttext: "Post Code",
                                       obscureText: false,
-                                      textInputType:
-                                          TextInputType.streetAddress,
+                                      textInputType: TextInputType.number,
                                       controller: controller.spostcode,
                                       validator: (value) {
                                         if (value.isEmpty) {

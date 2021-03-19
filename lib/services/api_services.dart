@@ -2,16 +2,22 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:paul_app/controllers/staticcart.dart';
+
 import 'package:paul_app/models/categories.dart' as cat;
 import 'package:paul_app/models/customer.dart';
 import 'package:paul_app/models/login_model.dart';
 import 'package:paul_app/models/new_order_model.dart';
 import 'package:paul_app/models/product.dart';
 import 'package:paul_app/utils/config.dart';
+
 import 'payment-service.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices {
+  final storage = GetStorage();
+
   Future<bool> createCustomer(CustomerModel model) async {
     var authToken = base64.encode(utf8.encode(Config.CK + ":" + Config.CS));
 
@@ -144,37 +150,37 @@ class ApiServices {
     return data;
   }
 
-  Future<bool> createOrder(NewOrder order) async {
-    bool isOrderCreated = false;
+  // Future<bool> createOrder(NewOrder order) async {
+  //   bool isOrderCreated = false;
 
-    var authToken = base64.encode(
-      utf8.encode(Config.CK + ":" + Config.CS),
-    );
-    try {
-      var responce = await Dio().post(
-        'https://www.threadandthread.com/wp-json/wc/v3/orders',
-        data: order.toJson(),
-        options: Options(
-          headers: {
-            HttpHeaders.authorizationHeader: 'Basic $authToken',
-            HttpHeaders.contentTypeHeader: "application/json",
-          },
-        ),
-      );
-      if (responce.statusCode == 201) {
-        isOrderCreated = true;
-      }
-    } on DioError catch (e) {
-      print('-------------------------------------------eeeee-');
-      print(e.response.statusMessage);
-      if (e.response.statusCode == 404) {
-        print(e.response.statusCode);
-      } else {
-        print(e.toString());
-      }
-    }
-    return isOrderCreated;
-  }
+  //   var authToken = base64.encode(
+  //     utf8.encode(Config.CK + ":" + Config.CS),
+  //   );
+  //   try {
+  //     var responce = await Dio().post(
+  //       'https://www.threadandthread.com/wp-json/wc/v3/orders',
+  //       data: order.toJson(),
+  //       options: Options(
+  //         headers: {
+  //           HttpHeaders.authorizationHeader: 'Basic $authToken',
+  //           HttpHeaders.contentTypeHeader: "application/json",
+  //         },
+  //       ),
+  //     );
+  //     if (responce.statusCode == 201) {
+  //       isOrderCreated = true;
+  //     }
+  //   } on DioError catch (e) {
+  //     print('-------------------------------------------eeeee-');
+  //     print(e.response.statusMessage);
+  //     if (e.response.statusCode == 404) {
+  //       print(e.response.statusCode);
+  //     } else {
+  //       print(e.toString());
+  //     }
+  //   }
+  //   return isOrderCreated;
+  // }
 
   payViaNewCard(BuildContext context) async {
     // ProgressDialog dialog = new ProgressDialog(context);
@@ -208,6 +214,7 @@ class ApiServices {
 
     if (response.statusCode == 201) {
       print(await response.stream.bytesToString());
+      storage.write('order', StaticCart.listLineItem);
       return true;
     } else {
       print(response.statusCode);
